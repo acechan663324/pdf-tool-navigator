@@ -1,0 +1,5 @@
+{
+  "name": "PDF Tool Navigator",
+  "description": "A modern web application to discover, compare, and rate various PDF tools. It features recommendations and rankings based on visitor traffic, price, and user ratings to help you find the best tool for your needs.",
+  "requestFramePermissions": []
+}
