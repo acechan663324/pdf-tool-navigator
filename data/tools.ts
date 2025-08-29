@@ -12,6 +12,16 @@ export const pdfTools: PdfTool[] = [
     rating: 4.8,
     visitors: 45000000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.ilovepdf.com%2F?w=500&h=300',
+    tags: [
+        { name: 'Freemium King', color: 'bg-emerald-100 text-emerald-800' },
+        { name: 'Web & Mobile', color: 'bg-sky-100 text-sky-800' },
+        { name: '20+ Tools', color: 'bg-indigo-100 text-indigo-800' }
+    ],
+    reviews: [
+      { id: 1, author: 'Alice Johnson', avatarUrl: 'https://i.pravatar.cc/48?u=alice', rating: 5, date: 'July 1, 2024', comment: 'An absolute lifesaver for my daily document tasks. The merge and compress tools work flawlessly every time. The free tier is incredibly generous!' },
+      { id: 2, author: 'Ben Carter', avatarUrl: 'https://i.pravatar.cc/48?u=ben', rating: 4, date: 'June 28, 2024', comment: 'Great set of tools, very easy to use. I only wish the free version didn\'t have a limit on the number of files per task, but for the price, it\'s unbeatable.' },
+      { id: 3, author: 'Clara Williams', avatarUrl: 'https://i.pravatar.cc/48?u=clara', rating: 5, date: 'June 25, 2024', comment: 'I upgraded to premium and it\'s worth every penny. Unlimited access and the desktop app make it a powerhouse. Highly recommend!' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -52,6 +62,7 @@ export const pdfTools: PdfTool[] = [
       }
     ],
     aiInsight: 'iLovePDF captures a massive user base through a classic freemium model, offering a wide range of essential tools for free. Its primary strength lies in its accessibility and ease of use for quick, one-off tasks. The business model relies on converting a small percentage of its high-volume traffic to paid plans for higher limits and advanced features, a strategy proven effective in the utility software market.',
+    recommendationReason: 'With a staggering 45 million monthly visitors, iLovePDF is the undisputed market leader. It offers the most comprehensive suite of free tools, a simple interface, and a proven track record, making it the most reliable and versatile choice for everyday PDF tasks.',
   },
   {
     id: 3,
@@ -64,6 +75,15 @@ export const pdfTools: PdfTool[] = [
     rating: 4.8,
     visitors: 41000000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fsmallpdf.com%2F?w=500&h=300',
+    tags: [
+        { name: 'Best UI', color: 'bg-violet-100 text-violet-800' },
+        { name: 'Cross-Platform', color: 'bg-sky-100 text-sky-800' },
+        { name: 'eSign', color: 'bg-amber-100 text-amber-800' }
+    ],
+    reviews: [
+        { id: 4, author: 'David Miller', avatarUrl: 'https://i.pravatar.cc/48?u=david', rating: 5, date: 'July 2, 2024', comment: 'The user interface is just gorgeous. It makes working with PDFs a pleasure. Everything is fast, smooth, and works as expected.' },
+        { id: 5, author: 'Eva Green', avatarUrl: 'https://i.pravatar.cc/48?u=eva', rating: 4, date: 'June 30, 2024', comment: 'I love the design, but the free version is a bit too restrictive for me. The two-document-per-day limit is hit very quickly. Still, a fantastic product.' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -103,6 +123,7 @@ export const pdfTools: PdfTool[] = [
       }
     ],
     aiInsight: "Smallpdf competes directly with iLovePDF by focusing on a superior user experience with a clean, modern interface. Its marketing emphasizes simplicity and speed. The platform's success is tied to strong SEO and a user-friendly design that encourages repeated use for various PDF tasks, effectively funneling users towards its premium subscription for unrestricted access.",
+    recommendationReason: "Smallpdf sets the standard for user experience with its beautiful, intuitive design. While it commands a huge audience, its primary appeal is making PDF tasks feel effortless. It's the best choice for users who value a clean, modern interface and a seamless workflow.",
   },
   {
     id: 33,
@@ -115,6 +136,15 @@ export const pdfTools: PdfTool[] = [
     rating: 4.7,
     visitors: 15000000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Ftools.pdf24.org%2Fen%2F?w=500&h=300',
+    tags: [
+        { name: '100% Free', color: 'bg-green-100 text-green-800' },
+        { name: 'Offline Mode', color: 'bg-slate-100 text-slate-800' },
+        { name: 'Lightweight', color: 'bg-teal-100 text-teal-800' }
+    ],
+    reviews: [
+        { id: 6, author: 'Frank Harris', avatarUrl: 'https://i.pravatar.cc/48?u=frank', rating: 5, date: 'June 29, 2024', comment: 'Can\'t believe this is free. The desktop version is amazing for working offline and I don\'t have to worry about privacy. It has all the features I need.' },
+        { id: 7, author: 'Grace Lee', avatarUrl: 'https://i.pravatar.cc/48?u=grace', rating: 4, date: 'June 22, 2024', comment: 'It\'s incredibly powerful for a free tool. The interface is a bit clunky and dated, but you can\'t argue with the price and functionality.' }
+    ],
     pricingPlans: [
       {
         name: 'Free Online Tools',
@@ -145,6 +175,7 @@ export const pdfTools: PdfTool[] = [
       }
     ],
     aiInsight: "PDF24's success comes from offering a comprehensive and reliable set of tools completely for free, supported by advertising. Its high visitor count is driven by strong SEO and word-of-mouth. By maintaining both online and offline versions, it caters to a wide range of user needs, from quick web-based tasks to more integrated desktop workflows.",
+    recommendationReason: "PDF24's commitment to being 100% free, combined with a powerful offline desktop app, makes it a standout choice for privacy-conscious users and those on a budget. It delivers premium features without any cost, a truly exceptional value.",
   },
   {
     id: 4,
@@ -157,6 +188,14 @@ export const pdfTools: PdfTool[] = [
     rating: 4.6,
     visitors: 9500000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.foxit.com%2Fpdf-editor%2F?w=500&h=300',
+    tags: [
+        { name: 'Acrobat Alternative', color: 'bg-red-100 text-red-800' },
+        { name: 'Enterprise', color: 'bg-blue-100 text-blue-800' },
+        { name: 'AI Features', color: 'bg-fuchsia-100 text-fuchsia-800' }
+    ],
+    reviews: [
+        { id: 8, author: 'Heidi Clark', avatarUrl: 'https://i.pravatar.cc/48?u=heidi', rating: 5, date: 'June 18, 2024', comment: 'Our company switched from Adobe to Foxit and we haven\'t looked back. It\'s just as powerful but much more affordable. The Pro features are excellent.' }
+    ],
     pricingPlans: [
       {
         name: 'Editor',
@@ -209,6 +248,14 @@ export const pdfTools: PdfTool[] = [
     rating: 4.6,
     visitors: 8200000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.sejda.com%2F?w=500&h=300',
+    tags: [
+        { name: 'Privacy Focus', color: 'bg-cyan-100 text-cyan-800' },
+        { name: 'Simple UI', color: 'bg-violet-100 text-violet-800' },
+        { name: 'Generous Free Tier', color: 'bg-emerald-100 text-emerald-800' }
+    ],
+    reviews: [
+        { id: 9, author: 'Ivan Petrov', avatarUrl: 'https://i.pravatar.cc/48?u=ivan', rating: 5, date: 'May 20, 2024', comment: 'I love that they automatically delete my files. For someone who works with sensitive documents, this privacy feature is the main reason I use Sejda.' }
+    ],
     pricingPlans: [
         {
             name: 'Free',
@@ -248,6 +295,7 @@ export const pdfTools: PdfTool[] = [
     ],
     aiInsight: "Sejda's focus on privacy, with automatic file deletion after a few hours, is a significant trust signal for users handling sensitive documents. This, combined with a generous free tier and a very clean interface, makes it a strong contender in the online PDF tools space. It directly competes on usability and user trust rather than an exhaustive feature list.",
   },
+  // ... (rest of the data remains the same but could have reviews added)
   {
     id: 6,
     name: 'Soda PDF',
@@ -259,6 +307,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.4,
     visitors: 6500000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.sodapdf.com%2F?w=500&h=300',
+    tags: [
+        { name: 'Online & Desktop', color: 'bg-sky-100 text-sky-800' },
+        { name: '3D View', color: 'bg-rose-100 text-rose-800' },
+        { name: 'OCR', color: 'bg-amber-100 text-amber-800' }
+    ],
     pricingPlans: [
         {
             name: 'Standard',
@@ -310,6 +363,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.5,
     visitors: 4500000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.gonitro.com%2Fpdf-pro?w=500&h=300',
+    tags: [
+        { name: 'Business Productivity', color: 'bg-blue-100 text-blue-800' },
+        { name: 'Unlimited eSign', color: 'bg-amber-100 text-amber-800' },
+        { name: 'Analytics', color: 'bg-fuchsia-100 text-fuchsia-800' }
+    ],
     pricingPlans: [
         {
             name: 'PDF Pro',
@@ -352,6 +410,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.5,
     visitors: 3800000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpdf.wondershare.com%2F?w=500&h=300',
+    tags: [
+        { name: 'Office-like UI', color: 'bg-sky-100 text-sky-800' },
+        { name: 'AI Tools', color: 'bg-fuchsia-100 text-fuchsia-800' },
+        { name: 'Cross-Platform', color: 'bg-indigo-100 text-indigo-800' }
+    ],
     pricingPlans: [
         {
             name: 'Free Trial',
@@ -404,6 +467,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.2,
     visitors: 3500000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.pdfescape.com%2F?w=500&h=300',
+    tags: [
+        { name: 'Free Online Editor', color: 'bg-green-100 text-green-800' },
+        { name: 'Form Filler', color: 'bg-amber-100 text-amber-800' },
+        { name: 'Reliable', color: 'bg-slate-100 text-slate-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free Online',
@@ -456,6 +524,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.7,
     visitors: 2800000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.tracker-software.com%2Fproduct%2Fpdf-xchange-editor?w=500&h=300',
+    tags: [
+        { name: 'Fast & Lightweight', color: 'bg-teal-100 text-teal-800' },
+        { name: 'One-Time Purchase', color: 'bg-emerald-100 text-emerald-800' },
+        { name: 'Power User', color: 'bg-red-100 text-red-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free Version',
@@ -509,6 +582,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.6,
     visitors: 2500000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.xodo.com%2F?w=500&h=300',
+    tags: [
+        { name: 'Collaboration', color: 'bg-blue-100 text-blue-800' },
+        { name: 'Cross-Platform Sync', color: 'bg-sky-100 text-sky-800' },
+        { name: 'Top Annotator', color: 'bg-amber-100 text-amber-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -550,6 +628,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.3,
     visitors: 2300000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.docfly.com%2F?w=500&h=300',
+    tags: [
+        { name: 'Simple Web Tools', color: 'bg-violet-100 text-violet-800' },
+        { name: 'Quick Conversions', color: 'bg-teal-100 text-teal-800' },
+        { name: 'Low Cost Pro', color: 'bg-green-100 text-green-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -589,6 +672,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.5,
     visitors: 2100000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2Flightpdf.com%2F?w=500&h=300',
+    tags: [
+        { name: 'AI Chat with PDF', color: 'bg-fuchsia-100 text-fuchsia-800' },
+        { name: 'Summarizer', color: 'bg-sky-100 text-sky-800' },
+        { name: 'Web-Based', color: 'bg-blue-100 text-blue-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -628,6 +716,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.8,
     visitors: 1900000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpdfexpert.com%2F?w=500&h=300',
+    tags: [
+        { name: 'Apple Ecosystem', color: 'bg-slate-100 text-slate-800' },
+        { name: 'Slick Design', color: 'bg-violet-100 text-violet-800' },
+        { name: 'Fast & Powerful', color: 'bg-red-100 text-red-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -669,6 +762,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.4,
     visitors: 1600000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpdfsam.org%2F?w=500&h=300',
+    tags: [
+        { name: 'Free & Open Source', color: 'bg-green-100 text-green-800' },
+        { name: 'Split & Merge', color: 'bg-amber-100 text-amber-800' },
+        { name: 'Offline & Private', color: 'bg-cyan-100 text-cyan-800' }
+    ],
     pricingPlans: [
       {
         name: 'Basic',
@@ -721,6 +819,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.7,
     visitors: 1500000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fupdf.com%2F?w=500&h=300',
+    tags: [
+        { name: 'Modern UI', color: 'bg-violet-100 text-violet-800' },
+        { name: 'AI Assistant', color: 'bg-fuchsia-100 text-fuchsia-800' },
+        { name: 'All Platforms', color: 'bg-sky-100 text-sky-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -762,6 +865,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.6,
     visitors: 1300000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.sumatrapdfreader.org%2Ffree-pdf-reader?w=500&h=300',
+    tags: [
+        { name: 'Ultra Lightweight', color: 'bg-teal-100 text-teal-800' },
+        { name: 'Windows', color: 'bg-blue-100 text-blue-800' },
+        { name: 'Multi-Format Reader', color: 'bg-indigo-100 text-indigo-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -789,6 +897,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.7,
     visitors: 1200000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpdf.abbyy.com%2Ffinereader-pdf%2F?w=500&h=300',
+    tags: [
+        { name: 'Best-in-class OCR', color: 'bg-amber-100 text-amber-800' },
+        { name: 'Digitization Pro', color: 'bg-blue-100 text-blue-800' },
+        { name: 'Document Comparison', color: 'bg-slate-100 text-slate-800' }
+    ],
     pricingPlans: [
       {
         name: 'Standard',
@@ -827,6 +940,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.4,
     visitors: 1000000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.kofax.com%2Fproducts%2Fpower-pdf?w=500&h=300',
+    tags: [
+        { name: 'Enterprise Security', color: 'bg-cyan-100 text-cyan-800' },
+        { name: 'Workflow Automation', color: 'bg-blue-100 text-blue-800' },
+        { name: 'Redaction', color: 'bg-red-100 text-red-800' }
+    ],
     pricingPlans: [
       {
         name: 'Standard',
@@ -866,6 +984,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.8,
     visitors: 950000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.pdfgear.com%2F?w=500&h=300',
+    tags: [
+        { name: '100% Free', color: 'bg-green-100 text-green-800' },
+        { name: 'AI Copilot', color: 'bg-fuchsia-100 text-fuchsia-800' },
+        { name: 'No Limits', color: 'bg-emerald-100 text-emerald-800' }
+    ],
     pricingPlans: [
       {
         name: 'Completely Free',
@@ -897,6 +1020,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.3,
     visitors: 850000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.easeus.com%2Fpdf-editor%2Findex.html?w=500&h=300',
+    tags: [
+        { name: 'Trusted Brand', color: 'bg-blue-100 text-blue-800' },
+        { name: 'All-in-One', color: 'bg-indigo-100 text-indigo-800' },
+        { name: 'Windows', color: 'bg-sky-100 text-sky-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free Trial',
@@ -936,6 +1064,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.3,
     visitors: 700000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.pdfarchitect.org%2F?w=500&h=300',
+    tags: [
+        { name: 'Modular Design', color: 'bg-amber-100 text-amber-800' },
+        { name: 'Pay for what you need', color: 'bg-green-100 text-green-800' },
+        { name: 'Flexible', color: 'bg-violet-100 text-violet-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -992,6 +1125,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.4,
     visitors: 500000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.investintech.com%2Fprod_a2e.htm?w=500&h=300',
+    tags: [
+        { name: 'Data Extraction', color: 'bg-teal-100 text-teal-800' },
+        { name: 'PDF to Excel', color: 'bg-emerald-100 text-emerald-800' },
+        { name: 'Specialized', color: 'bg-indigo-100 text-indigo-800' }
+    ],
     pricingPlans: [
       {
         name: 'Professional License',
@@ -1022,6 +1160,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.3,
     visitors: 450000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.swifdoo.com%2F?w=500&h=300',
+    tags: [
+        { name: 'Lightweight', color: 'bg-teal-100 text-teal-800' },
+        { name: 'Fast Performance', color: 'bg-sky-100 text-sky-800' },
+        { name: 'Windows', color: 'bg-blue-100 text-blue-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free Trial',
@@ -1061,6 +1204,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.2,
     visitors: 420000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwiki.gnome.org%2FApps%2FEvince?w=500&h=300',
+    tags: [
+        { name: 'Open Source', color: 'bg-green-100 text-green-800' },
+        { name: 'Linux/GNOME', color: 'bg-slate-100 text-slate-800' },
+        { name: 'Reliable Viewer', color: 'bg-blue-100 text-blue-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -1089,6 +1237,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.4,
     visitors: 380000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fcode-industry.net%2Fmaster-pdf-editor%2F?w=500&h=300',
+    tags: [
+        { name: 'Excellent Linux Support', color: 'bg-slate-100 text-slate-800' },
+        { name: 'Cross-Platform', color: 'bg-sky-100 text-sky-800' },
+        { name: 'One-Time Purchase', color: 'bg-emerald-100 text-emerald-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free Version',
@@ -1127,6 +1280,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.4,
     visitors: 320000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fokular.kde.org%2F?w=500&h=300',
+    tags: [
+        { name: 'Open Source', color: 'bg-green-100 text-green-800' },
+        { name: 'Linux/KDE', color: 'bg-slate-100 text-slate-800' },
+        { name: 'Advanced Annotations', color: 'bg-amber-100 text-amber-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -1155,6 +1313,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.3,
     visitors: 280000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fmupdf.com%2F?w=500&h=300',
+    tags: [
+        { name: 'For Developers', color: 'bg-gray-100 text-gray-800' },
+        { name: 'Ultra Lightweight', color: 'bg-teal-100 text-teal-800' },
+        { name: 'Command Line', color: 'bg-slate-100 text-slate-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free',
@@ -1183,6 +1346,11 @@ export const pdfTools: PdfTool[] = [
     rating: 4.5,
     visitors: 180000,
     imageUrl: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fskim-app.sourceforge.io%2F?w=500&h=300',
+    tags: [
+        { name: 'macOS', color: 'bg-slate-100 text-slate-800' },
+        { name: 'Academic Focus', color: 'bg-blue-100 text-blue-800' },
+        { name: 'Note-Taking', color: 'bg-amber-100 text-amber-800' }
+    ],
     pricingPlans: [
       {
         name: 'Free',

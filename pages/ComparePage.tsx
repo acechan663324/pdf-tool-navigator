@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { pdfTools } from '../data/tools';
@@ -37,91 +36,30 @@ const PricingCard: React.FC<{ plan: PricingPlan }> = ({ plan }) => (
     </div>
 );
 
-const ComparisonColumn: React.FC<{ tool: PdfTool }> = ({ tool }) => {
-  const freePlan = tool.pricingPlans.find(p => p.price === '$0' || p.name.toLowerCase().includes('free'));
-  const paidPlans = tool.pricingPlans.filter(p => p.price !== '$0' && !p.name.toLowerCase().includes('free'));
-
-  const freeFeatures = freePlan ? freePlan.features : [];
-  
-  const paidFeatures = paidPlans.flatMap(p => p.features);
-  const uniquePaidFeatures = [...new Set(paidFeatures)];
-
+const FeatureList: React.FC<{ title: string; features: string[] }> = ({ title, features }) => {
+  if (features.length === 0) {
+    return (
+        <div>
+            <h4 className="text-lg font-semibold mb-3 text-slate-800">{title}</h4>
+            <p className="text-sm text-slate-500">No specific features listed for this category.</p>
+        </div>
+    );
+  }
   return (
-    <div className="flex flex-col gap-y-8 p-4 border border-slate-200 rounded-lg bg-white shadow-sm">
-      {/* Homepage Preview */}
-      <Link to={`/tool/${tool.id}`} className="block">
-        <img src={tool.imageUrl} alt={tool.name} className="w-full h-auto object-cover rounded-lg shadow-md border border-slate-200" />
-      </Link>
-      
-      {/* Name and Visit Button */}
-      <div className="text-center">
-        <h2 className="text-3xl font-bold text-slate-900">{tool.name}</h2>
-        <a 
-          href={tool.website} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="mt-4 inline-block bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105"
-        >
-          Visit Website
-        </a>
-      </div>
-
-      {/* Metrics */}
-      <div className="flex justify-around items-center gap-4 p-4 bg-slate-50 rounded-lg">
-        <div className="text-center">
-            <div className="text-sm text-slate-500 uppercase font-semibold tracking-wider">Visitors/mo</div>
-            <div className="text-2xl font-bold text-slate-800 mt-1">{(tool.visitors / 1000000).toFixed(1)}M</div>
-        </div>
-        <div className="border-l border-slate-300 h-10"></div>
-        <div className="text-center">
-            <div className="text-sm text-slate-500 uppercase font-semibold tracking-wider">Rating</div>
-            <div className="text-2xl font-bold text-slate-800 flex items-center justify-center gap-2 mt-1">
-                <StarIcon className="w-6 h-6 text-amber-400" />
-                <span>{tool.rating.toFixed(1)}</span>
-            </div>
-        </div>
-      </div>
-
-      {/* Feature Lists */}
-      <div className="space-y-6">
-        {freeFeatures.length > 0 && (
-            <div>
-                <h3 className="text-xl font-semibold mb-3 border-b pb-2 text-slate-800">Free Features</h3>
-                <ul className="space-y-2 text-slate-700">
-                    {freeFeatures.map((feature, i) => (
-                        <li key={i} className="flex items-start text-sm">
-                            <CheckCircleIcon />
-                            <span className="ml-2.5">{feature}</span>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        )}
-        {uniquePaidFeatures.length > 0 && (
-            <div>
-                <h3 className="text-xl font-semibold mb-3 border-b pb-2 text-slate-800">Paid Features</h3>
-                <ul className="space-y-2 text-slate-700">
-                    {uniquePaidFeatures.map((feature, i) => (
-                        <li key={i} className="flex items-start text-sm">
-                            <CheckCircleIcon />
-                            <span className="ml-2.5">{feature}</span>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        )}
-      </div>
-
-      {/* Pricing Plans */}
-      <div>
-        <h3 className="text-xl font-semibold mb-4 border-b pb-2 text-slate-800">Plans & Pricing</h3>
-        <div className="grid grid-cols-1 gap-4">
-             {tool.pricingPlans.map((plan, index) => <PricingCard key={index} plan={plan} />)}
-        </div>
-      </div>
+    <div>
+        <h4 className="text-lg font-semibold mb-3 text-slate-800">{title}</h4>
+        <ul className="space-y-2 text-slate-700">
+            {features.map((feature, i) => (
+                <li key={i} className="flex items-start text-sm">
+                    <CheckCircleIcon />
+                    <span className="ml-2.5">{feature}</span>
+                </li>
+            ))}
+        </ul>
     </div>
   );
 };
+
 
 const ComparePage: React.FC = () => {
     const { id1, id2 } = useParams<{ id1: string; id2?: string }>();
@@ -149,42 +87,105 @@ const ComparePage: React.FC = () => {
         }
     };
 
+    if (tool1 && tool2) {
+        const getFeatures = (tool: PdfTool) => {
+            const freePlan = tool.pricingPlans.find(p => p.price === '$0' || p.name.toLowerCase().includes('free'));
+            const paidPlans = tool.pricingPlans.filter(p => p.price !== '$0' && !p.name.toLowerCase().includes('free'));
+            const freeFeatures = freePlan ? freePlan.features : [];
+            const paidFeatures = paidPlans.flatMap(p => p.features);
+            const uniquePaidFeatures = [...new Set(paidFeatures)];
+            return { freeFeatures, paidFeatures: uniquePaidFeatures };
+        };
+        const features1 = getFeatures(tool1);
+        const features2 = getFeatures(tool2);
+
+        return (
+            <div className="space-y-12">
+                 {aiComparisonText && (
+                    <section className="bg-indigo-50 border-2 border-indigo-200 p-6 sm:p-8 rounded-xl shadow-lg">
+                        <div className="flex items-center justify-center mb-4">
+                            <AiInsightIcon />
+                            <h2 className="ml-3 text-2xl font-bold text-slate-800 text-center">AI-Powered Comparison</h2>
+                        </div>
+                        <div 
+                            className="text-slate-700 prose max-w-none" 
+                            dangerouslySetInnerHTML={{ __html: aiComparisonText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br />') }}
+                        >
+                        </div>
+                    </section>
+                )}
+                
+                <div className="bg-white rounded-lg shadow-xl p-6 sm:p-8 space-y-10">
+                    {/* --- ROW: NAME & PREVIEW --- */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div className="text-center md:text-left">
+                            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">{tool1.name}</h2>
+                            <a href={tool1.website} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105">Visit Website</a>
+                        </div>
+                        <div className="text-center md:text-left">
+                            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">{tool2.name}</h2>
+                            <a href={tool2.website} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105">Visit Website</a>
+                        </div>
+                    </div>
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <Link to={`/tool/${tool1.id}`} className="relative block group rounded-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-150 hover:z-10">
+                          <img src={tool1.imageUrl} alt={tool1.name} className="w-full h-auto object-cover rounded-lg shadow-md border border-slate-200 group-hover:ring-2 group-hover:ring-indigo-500 transition-all duration-300 ease-in-out" />
+                        </Link>
+                        <Link to={`/tool/${tool2.id}`} className="relative block group rounded-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-150 hover:z-10">
+                          <img src={tool2.imageUrl} alt={tool2.name} className="w-full h-auto object-cover rounded-lg shadow-md border border-slate-200 group-hover:ring-2 group-hover:ring-indigo-500 transition-all duration-300 ease-in-out" />
+                        </Link>
+                    </div>
+
+                    {/* --- ROW: METRICS --- */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t pt-8">
+                        <div className="flex justify-around items-center gap-4 p-4 bg-slate-50 rounded-lg">
+                            <div className="text-center"><div className="text-sm text-slate-500 uppercase font-semibold tracking-wider">Visitors/mo</div><div className="text-2xl font-bold text-slate-800 mt-1">{(tool1.visitors / 1000000).toFixed(1)}M</div></div>
+                            <div className="border-l border-slate-300 h-10"></div>
+                            <div className="text-center"><div className="text-sm text-slate-500 uppercase font-semibold tracking-wider">Rating</div><div className="text-2xl font-bold text-slate-800 flex items-center justify-center gap-2 mt-1"><StarIcon className="w-6 h-6 text-amber-400" /><span>{tool1.rating.toFixed(1)}</span></div></div>
+                        </div>
+                        <div className="flex justify-around items-center gap-4 p-4 bg-slate-50 rounded-lg">
+                            <div className="text-center"><div className="text-sm text-slate-500 uppercase font-semibold tracking-wider">Visitors/mo</div><div className="text-2xl font-bold text-slate-800 mt-1">{(tool2.visitors / 1000000).toFixed(1)}M</div></div>
+                            <div className="border-l border-slate-300 h-10"></div>
+                            <div className="text-center"><div className="text-sm text-slate-500 uppercase font-semibold tracking-wider">Rating</div><div className="text-2xl font-bold text-slate-800 flex items-center justify-center gap-2 mt-1"><StarIcon className="w-6 h-6 text-amber-400" /><span>{tool2.rating.toFixed(1)}</span></div></div>
+                        </div>
+                    </div>
+
+                    {/* --- ROW: FEATURES --- */}
+                    <div className="border-t pt-8">
+                        <h3 className="text-2xl font-bold text-slate-800 text-center mb-8">Feature Comparison</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                            <div className="space-y-6"><FeatureList title="Free Features" features={features1.freeFeatures} /><FeatureList title="Paid Features" features={features1.paidFeatures} /></div>
+                            <div className="space-y-6"><FeatureList title="Free Features" features={features2.freeFeatures} /><FeatureList title="Paid Features" features={features2.paidFeatures} /></div>
+                        </div>
+                    </div>
+
+                    {/* --- ROW: PRICING --- */}
+                    <div className="border-t pt-8">
+                        <h3 className="text-2xl font-bold text-slate-800 text-center mb-8">Plans & Pricing</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                            <div className="space-y-4">{tool1.pricingPlans.map((plan, index) => <PricingCard key={index} plan={plan} />)}</div>
+                            <div className="space-y-4">{tool2.pricingPlans.map((plan, index) => <PricingCard key={index} plan={plan} />)}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="space-y-12">
-            {!tool2 && (
-                <div className="text-center p-8 bg-white rounded-lg shadow-xl max-w-2xl mx-auto">
-                    <h1 className="text-3xl font-bold">Compare <span className="text-indigo-600">{tool1.name}</span></h1>
-                    <p className="mt-4 text-lg text-slate-600">Select another website to see a side-by-side comparison of features and pricing.</p>
-                    <div className="mt-6">
-                        <select onChange={handleSelectTool} defaultValue="" className="block w-full max-w-xs mx-auto p-3 border border-slate-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                            <option value="" disabled>Choose a website...</option>
-                            {otherTools.map(tool => (
-                                <option key={tool.id} value={tool.id}>{tool.name}</option>
-                            ))}
-                        </select>
-                    </div>
+            <div className="text-center p-8 bg-white rounded-lg shadow-xl max-w-2xl mx-auto">
+                <h1 className="text-3xl font-bold">Compare <span className="text-indigo-600">{tool1.name}</span></h1>
+                <p className="mt-4 text-lg text-slate-600">Select another website to see a side-by-side comparison of features and pricing.</p>
+                <div className="mt-6">
+                    <select onChange={handleSelectTool} defaultValue="" className="block w-full max-w-xs mx-auto p-3 border border-slate-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                        <option value="" disabled>Choose a website...</option>
+                        {otherTools.map(tool => (
+                            <option key={tool.id} value={tool.id}>{tool.name}</option>
+                        ))}
+                    </select>
                 </div>
-            )}
-
-            {tool1 && tool2 && (
-                <div className="space-y-12">
-                     {aiComparisonText && (
-                        <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-xl border border-slate-200">
-                             <div className="flex items-center justify-center">
-                                <AiInsightIcon />
-                                <h3 className="ml-3 text-2xl font-bold text-slate-800">AI-Powered Comparison</h3>
-                            </div>
-                            <div className="mt-4 text-slate-700 prose prose-indigo max-w-none" dangerouslySetInnerHTML={{ __html: aiComparisonText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br />') }}>
-                            </div>
-                        </div>
-                    )}
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
-                       <ComparisonColumn tool={tool1} />
-                       <ComparisonColumn tool={tool2} />
-                    </div>
-                </div>
-            )}
+            </div>
         </div>
     );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { pdfTools } from '../data/tools';
 import RankingSection from '../components/RankingSection';
 import { Link } from 'react-router-dom';
+import { PdfTool } from '../types';
 
 const BarChartIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
@@ -22,6 +23,20 @@ const GiftIcon = () => (
     </svg>
 );
 
+const getHighlightFeatures = (tool: PdfTool) => {
+    const featuredPlan = tool.pricingPlans.find(p => p.isFeatured);
+    if (featuredPlan) return featuredPlan.features.slice(0, 3);
+
+    const firstPaidPlan = tool.pricingPlans.find(p => p.price !== '$0' && !p.name.toLowerCase().includes('free'));
+    if (firstPaidPlan) return firstPaidPlan.features.slice(0, 3);
+
+    if (tool.pricingPlans.length > 0) {
+        return tool.pricingPlans[0].features.slice(0, 3);
+    }
+    return [];
+};
+
+
 const HomePage: React.FC = () => {
   const visitorRanking = [...pdfTools].sort((a, b) => b.visitors - a.visitors).slice(0, 10);
   const recommendedTool = visitorRanking.length > 0 ? visitorRanking[0] : null;
@@ -29,6 +44,8 @@ const HomePage: React.FC = () => {
   const priceRanking = [...pdfTools].filter(t => t.price > 0).sort((a, b) => a.price - b.price).slice(0, 10);
   const ratingRanking = [...pdfTools].sort((a, b) => b.rating - a.rating).slice(0, 10);
   const freeRanking = [...pdfTools].filter(t => t.price === 0).sort((a, b) => b.visitors - a.visitors).slice(0, 10);
+  
+  const highlightFeatures = recommendedTool ? getHighlightFeatures(recommendedTool) : [];
 
   return (
     <div className="space-y-12">
@@ -39,9 +56,50 @@ const HomePage: React.FC = () => {
                     <h2 className="text-sm font-bold uppercase text-indigo-600 tracking-wider">Today's Recommendation</h2>
                     <h1 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mt-2">{recommendedTool.name}</h1>
                     <p className="mt-4 text-lg text-slate-600">{recommendedTool.description}</p>
-                    <Link to={`/tool/${recommendedTool.id}`} className="mt-8 inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105">
-                        Learn More
-                    </Link>
+                    
+                    {recommendedTool.recommendationReason && (
+                        <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-400">
+                            <h4 className="font-bold text-slate-800">Why we recommend it:</h4>
+                            <p className="mt-1 text-slate-600">{recommendedTool.recommendationReason}</p>
+                        </div>
+                    )}
+
+                    <div className="mt-6 flex flex-wrap gap-2">
+                        {recommendedTool.tags.map(tag => (
+                            <span key={tag.name} className={`px-3 py-1 text-sm font-semibold rounded-full ${tag.color}`}>
+                                {tag.name}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div className="mt-6 border-t border-slate-200 pt-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Pricing</h4>
+                                <p className="mt-2 text-xl font-semibold text-slate-800">{recommendedTool.priceDisplay}</p>
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Key Features</h4>
+                                <ul className="mt-2 space-y-1 text-slate-600">
+                                    {highlightFeatures.map((feature, index) => (
+                                        <li key={index} className="flex items-center text-sm">
+                                            <svg className="w-4 h-4 text-emerald-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                                            {feature}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-8 flex flex-wrap items-center gap-4">
+                        <a href={recommendedTool.website} target="_blank" rel="noopener noreferrer" className="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105">
+                            Visit Website
+                        </a>
+                        <Link to={`/tool/${recommendedTool.id}`} className="inline-block bg-white text-indigo-600 border border-indigo-600 font-bold py-3 px-8 rounded-lg hover:bg-indigo-50 transition-colors transform hover:scale-105">
+                            Learn More & Compare
+                        </Link>
+                    </div>
                 </div>
                 <div className="order-1 md:order-2">
                     <img src={recommendedTool.imageUrl} alt={recommendedTool.name} className="w-full h-64 md:h-full object-cover" />
@@ -50,11 +108,11 @@ const HomePage: React.FC = () => {
         </section>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-        <RankingSection title="Visitor Ranking" tools={visitorRanking} icon={<BarChartIcon />} />
-        <RankingSection title="Free Ranking" tools={freeRanking} icon={<GiftIcon />} />
-        <RankingSection title="Price Ranking" tools={priceRanking} icon={<CurrencyDollarIcon />} />
-        <RankingSection title="Rating Ranking" tools={ratingRanking} icon={<StarIcon />} />
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+        <RankingSection title="Visitor Ranking" tools={visitorRanking} icon={<BarChartIcon />} className="bg-sky-50" rankColor="bg-sky-600" />
+        <RankingSection title="Free Ranking" tools={freeRanking} icon={<GiftIcon />} className="bg-emerald-50" rankColor="bg-emerald-600" />
+        <RankingSection title="Price Ranking" tools={priceRanking} icon={<CurrencyDollarIcon />} className="bg-amber-50" rankColor="bg-amber-600" />
+        <RankingSection title="Rating Ranking" tools={ratingRanking} icon={<StarIcon />} className="bg-violet-50" rankColor="bg-violet-600" />
       </div>
     </div>
   );
